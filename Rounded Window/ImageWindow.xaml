@@ -1,0 +1,51 @@
+﻿<Window x:Class="Rounded_Window.ImageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rounded_Window"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="400"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <Border  x:Name="WindowBorderBrush" CornerRadius="1000" BorderThickness="15" BorderBrush="{StaticResource NormalBorderGradient}">
+
+                <Border x:Name="WindowBorder" CornerRadius="1000" BorderThickness="0" Background="white"  MouseDown="TextBlock_MouseDown">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="1">
+                            <AdornerDecorator>
+                                <ContentPresenter/>
+                            </AdornerDecorator>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Border>
+        </ControlTemplate>
+    </Window.Template>
+
+    <ContentControl MouseDoubleClick="ContentControl_MouseDoubleClick">
+        <Ellipse>
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+    </ContentControl>
+
+
+</Window>
